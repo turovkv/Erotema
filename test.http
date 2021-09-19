@@ -1,0 +1,27 @@
+POST http://localhost:8000/api/question
+Content-Type: application/json
+
+{
+  "id_token": "a",
+  "text": "b",
+  "answer": 0.5
+}
+
+
+###
+POST http://localhost:8000/api/question
+Content-Type: application/json
+
+{
+  "id_token": "a",
+  "text": "b",
+  "answer": "c"
+}
+
+
+###
+GET http://localhost:8000/api/question?id_token=abc
+Accept: application/json
+
+
+###
