@@ -1,15 +1,13 @@
 import fastapi
 import uvicorn
 
-from api import my_api
-from views import home
+from Endpoints import endpoints
 
 api = fastapi.FastAPI()
 
 
 def configure():
-    api.include_router(home.router)
-    api.include_router(my_api.router)
+    api.include_router(endpoints.router)
 
 
 configure()
