@@ -4,3 +4,4 @@ uvicorn~=0.15.0
 starlette~=0.14.2
 jinja2
 pydantic~=1.8.2
+pytest~=6.2.5
