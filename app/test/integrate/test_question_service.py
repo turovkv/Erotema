@@ -1,7 +1,6 @@
 import pytest
 
 from app.Entities.entities import Question
-from app.Repositories.repositories import fake_db
 from app.Services.question_service import add_question, get_question
 
 
@@ -31,7 +30,5 @@ class TestQuestionService:
 
     def test_get_and_add_4(self):
         with pytest.raises(Exception) as ex:
-            print(fake_db["question"])
             add_question(Question(id_token="ques2", text="ques11", answer_ids=["ans11", "ans11"]))
-            print(fake_db["question"])
         assert str(ex.value) == "Question with id ques2 already exists"
