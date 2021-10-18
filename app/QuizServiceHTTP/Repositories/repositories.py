@@ -1,4 +1,4 @@
-from app.Entities.entities import Question, Answer, Quiz, Game
+from app.QuizServiceHTTP.Entities.entities import Question, Answer, Quiz, Game
 
 fake_db = {
     "answer": {},

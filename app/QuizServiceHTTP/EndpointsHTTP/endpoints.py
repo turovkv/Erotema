@@ -1,8 +1,8 @@
 import fastapi
 from fastapi import HTTPException
 
-from app.Entities.entities import Question
-from app.Services.question_service import get_question, add_question
+from app.QuizServiceHTTP.Entities.entities import Question
+from app.QuizServiceHTTP.Services.question_service import get_question, add_question
 
 router = fastapi.APIRouter()
 

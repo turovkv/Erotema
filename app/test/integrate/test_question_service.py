@@ -1,7 +1,7 @@
 import pytest
 
-from app.Entities.entities import Question
-from app.Services.question_service import add_question, get_question
+from app.QuizServiceHTTP.Entities.entities import Question
+from app.QuizServiceHTTP.Services.question_service import add_question, get_question
 
 
 class TestQuestionService:

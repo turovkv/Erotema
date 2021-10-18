@@ -1,5 +1,5 @@
-from app.Entities.entities import Question
-from app.Repositories.repositories import add_question, get_question, check_exists_question
+from app.QuizServiceHTTP.Entities.entities import Question
+from app.QuizServiceHTTP.Repositories.repositories import add_question, get_question, check_exists_question
 
 
 class TestQuestionDao:
