@@ -1,0 +1,12 @@
+version: '3.1'
+
+services:
+  pg_db:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_USER=123
+      - POSTGRES_DB=Test
+    ports:
+      - ${POSTGRES_PORT:-5432}:5432
