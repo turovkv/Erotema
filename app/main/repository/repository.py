@@ -1,13 +1,13 @@
-from typing import List
+from typing import List, Optional
 
-from app.UserServiceHTTP_Postgres.model.models import Quiz
+from app.main.model.models import Quiz, User
 
 
 class Repository:
-    def get_quiz(self, user_session_id: int) -> Quiz:
+    def get_user(self, username: str) -> Optional[User]:
         pass
 
-    def update_points(self, user_session_id: int, point_sum: int) -> None:
+    def get_quiz(self, user_session_id: int) -> Quiz:
         pass
 
     def get_saved_quizzes(self, user_id: int) -> List[Quiz]:
@@ -16,10 +16,16 @@ class Repository:
     def get_public_quizzes(self) -> List[Quiz]:
         pass
 
-    def create_quiz(self, user_id: int, quiz: Quiz) -> int:
+    def update_points(self, user_session_id: int, point_sum: int) -> None:
         pass
 
     def update_quiz_publicity(self, user_id: int, quiz_id: int):
+        pass
+
+    def create_user(self, username: str, password_hash: str) -> int:
+        pass
+
+    def create_quiz(self, user_id: int, quiz: Quiz) -> int:
         pass
 
     def create_quiz_session(self, user_id: int, quiz_id: int) -> int:

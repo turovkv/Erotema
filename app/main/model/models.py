@@ -3,6 +3,11 @@ from typing import List
 from pydantic import BaseModel
 
 
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+
 class Answer(BaseModel):
     id: int
     title: str
@@ -33,8 +38,8 @@ class Quiz(BaseModel):
 
 class User(BaseModel):
     id: int
-    email: str
-    password_hash: str
+    username: str
+    hashed_password: str
 
     class Config:
         orm_mode = True

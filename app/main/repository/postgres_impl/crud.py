@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 
-from app.UserServiceHTTP_Postgres import model
-from app.UserServiceHTTP_Postgres.model import models
+from app.main import model
+from app.main.model import models
 
 
 def get_user(db: Session, user_id: int):
