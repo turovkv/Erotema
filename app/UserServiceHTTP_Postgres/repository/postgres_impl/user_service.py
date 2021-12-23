@@ -4,7 +4,9 @@ import fastapi
 from fastapi import Depends, HTTPException
 from sqlalchemy.orm import Session
 
-from . import crud, models, schemas
+from app.UserServiceHTTP_Postgres import model
+from ...model import models
+from . import crud
 from .database import SessionLocal, engine
 
 models.Base.metadata.create_all(bind=engine)

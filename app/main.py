@@ -4,7 +4,7 @@ import uvicorn
 from app.QuizServiceHTTP.EndpointsHTTP import endpoints
 from app.GameServiceGraphQL import game_service
 from app.QuizServiceHTTP.Repositories.repositories import init_db
-from app.UserServiceHTTP_Postgres import user_service
+from app.UserServiceHTTP_Postgres.repository.postgres_impl import user_service
 
 api = fastapi.FastAPI()
 
