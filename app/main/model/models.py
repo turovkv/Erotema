@@ -45,10 +45,18 @@ class User(BaseModel):
         orm_mode = True
 
 
+class UserQuiz(BaseModel):
+    user_id: int
+    quiz_id: int
+
+    class Config:
+        orm_mode = True
+
+
 class QuizSession(BaseModel):
     id: int
     quiz_id: int
-    owner_id: int
+    user_id: int
     is_ended: bool
 
     class Config:
@@ -57,8 +65,8 @@ class QuizSession(BaseModel):
 
 class UserSession(BaseModel):
     id: int
-    user_id: int
     quiz_session_id: int
+    user_id: int
     point_sum: int
 
     class Config:

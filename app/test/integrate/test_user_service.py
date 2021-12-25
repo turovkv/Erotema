@@ -2,7 +2,7 @@ from fastapi.testclient import TestClient
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from app.main.repository.postgres_impl.database import Base
-from app.main.repository.postgres_impl.user_service import get_db
+from app.main.repository.postgres_impl.old import get_db
 from app.main import api
 
 SQLALCHEMY_DATABASE_URL_test = "postgresql://123:123@localhost:5432/QuizOnline"

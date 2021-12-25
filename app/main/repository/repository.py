@@ -13,7 +13,7 @@ class SingletonMeta(type):
         return cls._instances[cls]
 
 
-class Repository(metaclass=SingletonMeta):
+class Repository:
     def get_user(self, username: str) -> Optional[User]:
         pass
 
