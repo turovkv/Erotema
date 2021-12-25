@@ -3,7 +3,17 @@ from typing import List, Optional
 from app.main.model.models import Quiz, User
 
 
-class Repository:
+class SingletonMeta(type):
+    _instances = {}
+
+    def __call__(cls, *args, **kwargs):
+        if cls not in cls._instances:
+            instance = super().__call__(*args, **kwargs)
+            cls._instances[cls] = instance
+        return cls._instances[cls]
+
+
+class Repository(metaclass=SingletonMeta):
     def get_user(self, username: str) -> Optional[User]:
         pass
 

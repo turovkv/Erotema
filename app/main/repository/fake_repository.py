@@ -18,12 +18,3 @@ class FakeRepository(Repository):
             return User(**fake_users_db[username])
         return None
 
-
-rep = None
-
-
-def get_repo() -> Repository:
-    global rep
-    if rep is None:
-        rep = FakeRepository()
-    return rep
