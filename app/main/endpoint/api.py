@@ -1,9 +1,10 @@
 import fastapi
-from fastapi import HTTPException
+from fastapi import HTTPException, Depends
 
-from app.main.model.models import Question
+from app.main.model.models import Question, User
+from app.main.service.auth_service import get_current_user
 
-router = fastapi.APIRouter()
+router = fastapi.APIRouter(prefix="/api")
 
 
 # @router.get('/question', response_model=Question)
@@ -20,3 +21,8 @@ router = fastapi.APIRouter()
 #         return add_question(question)
 #     except Exception as e:
 #         raise HTTPException(status_code=400, detail=str(e))
+
+
+@router.get("/users/me/", response_model=User)
+async def read_users_me(current_user: User = Depends(get_current_user)):
+    return current_user

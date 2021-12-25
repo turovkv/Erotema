@@ -32,7 +32,7 @@ class Repository(metaclass=SingletonMeta):
     def update_quiz_publicity(self, user_id: int, quiz_id: int):
         pass
 
-    def create_user(self, username: str, password_hash: str) -> int:
+    def create_user(self, username: str, hashed_password: str) -> None:
         pass
 
     def create_quiz(self, user_id: int, quiz: Quiz) -> int:

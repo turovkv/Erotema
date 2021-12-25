@@ -18,3 +18,13 @@ class FakeRepository(Repository):
             return User(**fake_users_db[username])
         return None
 
+    def create_user(self, username: str, hashed_password: str) -> None:
+        user = self.get_user(username)
+        if user is not None:
+            raise Exception("This user already exists")
+
+        fake_users_db[username] = {
+            "id": len(fake_users_db),
+            "username": username,
+            "hashed_password": hashed_password
+        }

@@ -7,15 +7,16 @@ from jose import JWTError, jwt
 from passlib.context import CryptContext
 
 from app.main.model.models import User, Token
-from app.main.repository.fake_repository import FakeRepository
+from app.main.repository.fake_impl.fake_repository import FakeRepository
 
 SECRET_KEY = "2c647be7ab01f90aa14e78fc85b7307978676272d1e7d882812a92e8a01f2c0e"
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 3
+TOKEN_URL = "token"
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl=TOKEN_URL)
 
 
 def verify_password(plain_password, hashed_password) -> bool:
@@ -30,7 +31,6 @@ def authenticate_user(username: str, password: str) -> bool:
     user = FakeRepository().get_user(username)
     if not user:
         return False
-    print(user.__dict__)
     if not verify_password(password, user.hashed_password):
         return False
     return True
@@ -65,6 +65,7 @@ def generate_new_token(username: str, password: str) -> Token:
 
 
 async def get_current_user(token: str = Depends(oauth2_scheme)) -> User:
+    # TODO : should not know about http
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Could not validate credentials",
@@ -81,3 +82,7 @@ async def get_current_user(token: str = Depends(oauth2_scheme)) -> User:
     if user is None:
         raise credentials_exception
     return user
+
+
+async def create_user(username: str, password: str) -> None:
+    FakeRepository().create_user(username, get_password_hash(password))
