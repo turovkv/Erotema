@@ -4,6 +4,10 @@ from app.main.repository.fake_impl.fake_repository import FakeRepository
 from app.main.repository.repository import Repository
 
 
+class SessionException(Exception):
+    pass
+
+
 class SessionService:
     def __init__(self, repo: Repository = Depends(FakeRepository)):
         self.repo = repo

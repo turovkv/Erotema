@@ -7,10 +7,14 @@ from app.main.repository.fake_impl.fake_repository import FakeRepository
 from app.main.repository.repository import Repository
 
 
+class QuizException(Exception):
+    pass
+
+
 class QuizService:
     def __init__(self, repo: Repository = Depends(FakeRepository)):
         self.repo = repo
-        
+
     def get_quiz(self, id: int) -> Quiz:
         return self.repo.get_quiz(id)
 
@@ -25,4 +29,3 @@ class QuizService:
 
     def create_quiz(self, user_id: int, quiz: Quiz) -> int:
         return self.repo.create_quiz(user_id, quiz)
-
