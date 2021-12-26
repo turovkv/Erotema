@@ -15,31 +15,34 @@ class SingletonMeta(type):
 
 class Repository:
     def get_user(self, username: str) -> Optional[User]:
-        pass
+        raise NotImplementedError()
 
-    def get_quiz(self, user_session_id: int) -> Quiz:
-        pass
+    def get_quiz_id_by_session(self, user_session_id: int) -> int:
+        raise NotImplementedError()
+
+    def get_quiz(self, quiz_id: int) -> Quiz:
+        raise NotImplementedError()
 
     def get_saved_quizzes(self, user_id: int) -> List[Quiz]:
-        pass
+        raise NotImplementedError()
 
     def get_public_quizzes(self) -> List[Quiz]:
-        pass
+        raise NotImplementedError()
 
     def update_points(self, user_session_id: int, point_sum: int) -> None:
-        pass
+        raise NotImplementedError()
 
     def update_quiz_publicity(self, user_id: int, quiz_id: int):
-        pass
+        raise NotImplementedError()
 
     def create_user(self, username: str, hashed_password: str) -> None:
-        pass
+        raise NotImplementedError()
 
     def create_quiz(self, user_id: int, quiz: Quiz) -> int:
-        pass
+        raise NotImplementedError()
 
     def create_quiz_session(self, user_id: int, quiz_id: int) -> int:
-        pass
+        raise NotImplementedError()
 
     def create_user_session(self, user_id: int, session_id: int) -> int:
-        pass
+        raise NotImplementedError()

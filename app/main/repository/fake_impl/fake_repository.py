@@ -36,19 +36,19 @@ quizzes = [
     Quiz(**{"id": 2, "title": "2", "questions": questions[0:3], "is_public": True}),
 ]
 
-user_quiz = [
+user_quizzes = [
     UserQuiz(**{"user_id": 0, "quiz_id": 0}),
     UserQuiz(**{"user_id": 0, "quiz_id": 1}),
     UserQuiz(**{"user_id": 1, "quiz_id": 2}),
 ]
 
-quiz_session = [
+quiz_sessions = [
     QuizSession(**{"id": 0, "quiz_id": 0, "user_id": 1, "is_ended": False}),
     QuizSession(**{"id": 1, "quiz_id": 1, "user_id": 2, "is_ended": False}),
     QuizSession(**{"id": 2, "quiz_id": 2, "user_id": 3, "is_ended": False}),
 ]
 
-user_session = [
+user_sessions = [
     UserSession(**{"id": 0, "quiz_session_id": 0, "user_id": 0, "point_sum": 0}),
     UserSession(**{"id": 1, "quiz_session_id": 0, "user_id": 1, "point_sum": 1}),
     UserSession(**{"id": 2, "quiz_session_id": 1, "user_id": 1, "point_sum": 2}),
@@ -81,9 +81,17 @@ class FakeRepository(Repository):
         #     "hashed_password": hashed_password
         # }
 
+    def get_quiz_id_by_session(self, user_session_id: int) -> int:
+        user_session = list(filter(lambda us: us.id == user_session_id, user_sessions))[0]
+        quiz_session = list(filter(lambda qs: qs.id == user_session.quiz_session_id, quiz_sessions))[0]
+        return quiz_session.quiz_id
+
+    def get_quiz(self, quiz_id: int) -> Quiz:
+        return list(filter(lambda q: q.id == quiz_id, quizzes))[0]
+
     def get_saved_quizzes(self, user_id: int) -> List[Quiz]:
         lq = []
-        for u_q in user_quiz:
+        for u_q in user_quizzes:
             if u_q.user_id == user_id:
                 lq.append(quizzes[u_q.quiz_id])
         return lq
@@ -96,7 +104,7 @@ class FakeRepository(Repository):
         return lq
 
     def update_points(self, user_session_id: int, point_sum: int) -> None:
-        user_session[user_session_id].point_sum = point_sum
+        user_sessions[user_session_id].point_sum = point_sum
 
     def update_quiz_publicity(self, user_id: int, quiz_id: int) -> None:
         quizzes[quiz_id].is_public = True
@@ -108,25 +116,23 @@ class FakeRepository(Repository):
         return ind
 
     def create_quiz_session(self, user_id: int, quiz_id: int) -> int:
-        quiz_session.append(
+        quiz_sessions.append(
             QuizSession(
-                id=len(quiz_session),
+                id=len(quiz_sessions),
                 quiz_id=quiz_id,
                 user_id=user_id,
                 is_ended=False
             )
         )
-        return len(quiz_session) - 1
+        return len(quiz_sessions) - 1
 
     def create_user_session(self, user_id: int, session_id: int) -> int:
-        user_session.append(
+        user_sessions.append(
             UserSession(
-                id=len(quiz_session),
+                id=len(quiz_sessions),
                 quiz_session_id=session_id,
                 user_id=user_id,
                 point_sum=False
             )
         )
-        return len(user_session) - 1
-
-
+        return len(user_sessions) - 1
