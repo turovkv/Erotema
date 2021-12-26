@@ -1,5 +1,3 @@
-# python-backend-course-2021
-
 ## Quiz online
 
 ### Run app
