@@ -3,7 +3,7 @@ from graphene import ObjectType, List, String, Int, Field, Schema
 from graphql.execution.executors.asyncio import AsyncioExecutor
 from starlette.graphql import GraphQLApp
 
-from app.QuizServiceHTTP.Repositories.repositories import fake_db
+from app.deprecated.QuizServiceHTTP.Repositories.repositories import fake_db
 
 
 class Quiz(ObjectType):

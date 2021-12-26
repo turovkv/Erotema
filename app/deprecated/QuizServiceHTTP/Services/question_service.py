@@ -1,7 +1,7 @@
 import re
 
-from app.QuizServiceHTTP.Entities.entities import Question
-from app.QuizServiceHTTP.Repositories import repositories
+from app.deprecated.QuizServiceHTTP.Entities.entities import Question
+from app.deprecated.QuizServiceHTTP.Repositories import repositories
 
 
 def validate_id_token(id_token: str) -> bool:
